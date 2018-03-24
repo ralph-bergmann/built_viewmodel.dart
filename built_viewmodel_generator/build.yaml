@@ -1,0 +1,14 @@
+targets:
+  $default:
+    builders:
+      built_value_generator|built_value:
+        enabled: true
+
+builders:
+  built_value:
+    target: ":built_viewmodel_generator"
+    import: "package:built_viewmodel_generator/builder.dart"
+    builder_factories: ["builtViewModel"]
+    build_extensions: {".dart": [".g.dart"]}
+    auto_apply: dependents
+    build_to: source
