@@ -1,11 +1,11 @@
 name: built_viewmodel
-version: 0.0.2
+version: 0.0.3
 description: built_viewmodel
 author: Ralph Bergmann <ralph@the4thfloor.eu>
 homepage: https://github.com/the4thfloor/built_viewmodel.dart
 
-#environment:
-#  sdk: '>=2-0-0-dev <2.0.0'
+environment:
+  sdk: '>=2-0-0-dev <2.0.0'
 
 dependencies:
-  build_config: ^0.2.3
+  build_config: ^0.2.5
