@@ -70,7 +70,7 @@ class ViewModelSourceClass {
               ..lambda = true
               ..returns = refer('${_name}Controller')
               ..body = new Code('__controller ??= new _\$${_name}Controller()${_handlerRefs
-                  .map((_HandlerRef ref) => '..${ref.stream}_${ref.handler} = ${ref.method}()')
+                  .map((_HandlerRef ref) => '..${ref.stream}_${ref.handler} = ${ref.method}')
                   .join()}'),
           ),
         )
