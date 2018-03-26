@@ -1,0 +1,12 @@
+.buildlog
+.DS_Store
+.idea
+.atom/
+.pub/
+.settings/
+*.iml
+**/build
+**/packages
+**/pubspec.lock
+**/.packages
+**/.dart_tool
