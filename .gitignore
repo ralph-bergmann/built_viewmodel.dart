@@ -1,11 +1,8 @@
-.buildlog
 .DS_Store
 .atom/
+.vscode/
 .pub/
-.settings/
 **/build
-**/packages
-**/pubspec.lock
 **/.packages
 **/.dart_tool
 
