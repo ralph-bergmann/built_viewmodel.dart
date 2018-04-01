@@ -40,7 +40,7 @@ class MyHomePage extends StatefulWidget {
 abstract class MyHomePageViewModel implements ViewModel<MyHomePageViewModelController> {
   Stream<int> get counter;
 
-  @onListenHandler('messages')
+  @onListenHandler('counter')
   onListen() => print('start listening for updates');
 
   void setCounter(int value) => controller.counter.add(value);

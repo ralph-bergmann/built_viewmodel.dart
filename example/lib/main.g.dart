@@ -19,7 +19,7 @@ class _$MyHomePageViewModel extends MyHomePageViewModel {
   Stream<int> get counter =>
       _counter ??= controller.counter.stream.asBroadcastStream();
   MyHomePageViewModelController get controller => _controller ??=
-      new _$MyHomePageViewModelController().._messagesOnListen = onListen;
+      new _$MyHomePageViewModelController().._counterOnListen = onListen;
   @override
   void dispose() {
     controller.dispose();
@@ -31,11 +31,12 @@ abstract class MyHomePageViewModelController implements Controller {
 }
 
 class _$MyHomePageViewModelController extends MyHomePageViewModelController {
-  Function _messagesOnListen;
+  Function _counterOnListen;
 
   StreamController<int> _counter;
 
-  StreamController<int> get counter => _counter ??= new StreamController<int>();
+  StreamController<int> get counter =>
+      _counter ??= new StreamController<int>(onListen: _counterOnListen);
   @override
   void dispose() {
     _counter.close();
