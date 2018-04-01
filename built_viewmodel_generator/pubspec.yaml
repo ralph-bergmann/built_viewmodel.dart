@@ -1,6 +1,8 @@
 name: built_viewmodel_generator
-version: 0.0.4
-description: built_viewmodel_generator
+version: 1.0.0
+description: >
+  built_viewmodel_generator to generate ViewModel(s).
+  This library is the dev dependency.
 author: Ralph Bergmann <ralph@the4thfloor.eu>
 homepage: https://github.com/the4thfloor/built_viewmodel.dart
 

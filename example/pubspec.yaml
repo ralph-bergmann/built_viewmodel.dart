@@ -1,5 +1,5 @@
 name: example
-description: A new Flutter project.
+description: A built_viewmodel Flutter example project.
 
 dependencies:
   build_config: ^0.2.5
