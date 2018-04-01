@@ -84,14 +84,14 @@ packages:
       path: "../built_viewmodel"
       relative: true
     source: path
-    version: "0.0.4"
+    version: "1.0.0"
   built_viewmodel_generator:
     dependency: "direct dev"
     description:
       path: "../built_viewmodel_generator"
       relative: true
     source: path
-    version: "0.0.4"
+    version: "1.0.0"
   charcode:
     dependency: transitive
     description:
