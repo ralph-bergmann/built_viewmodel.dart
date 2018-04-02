@@ -11,26 +11,26 @@ abstract class Controller {
   void dispose();
 }
 
-class onListenHandler {
+class OnListenHandler {
   final String callback = 'onListen';
   final String name;
-  const onListenHandler(this.name);
+  const OnListenHandler(this.name);
 }
 
-class onPauseHandler {
+class OnPauseHandler {
   final String callback = 'onPause';
   final String name;
-  const onPauseHandler(this.name);
+  const OnPauseHandler(this.name);
 }
 
-class onResumeHandler {
+class OnResumeHandler {
   final String callback = 'onResume';
   final String name;
-  const onResumeHandler(this.name);
+  const OnResumeHandler(this.name);
 }
 
-class onCancelHandler {
+class OnCancelHandler {
   final String callback = 'onCancel';
   final String name;
-  const onCancelHandler(this.name);
+  const OnCancelHandler(this.name);
 }
