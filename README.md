@@ -140,4 +140,18 @@ abstract class MyHomePageViewModel implements ViewModel<MyHomePageViewModelContr
 
 ... and just call it.
 
+## Don't forget ...
+
+... to call `dispose()` 
+
+Add this to your `State` class
+
+```dart
+@override
+void dispose() {
+  widget.model.dispose();
+  super.dispose();
+}
+```
+
 You can find the [full example here](https://github.com/the4thfloor/built_viewmodel.dart/blob/master/example/lib/main.dart).
