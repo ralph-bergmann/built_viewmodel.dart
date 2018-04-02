@@ -156,10 +156,10 @@ class ViewModelSourceClass {
   bool _isSupportedType(DartType type) => type.name == 'Stream';
 
   bool _isSupportedAnnotation(DartObject value) =>
-      value?.type?.displayName == 'onListenHandler' ||
-      value?.type?.displayName == 'onPauseHandler' ||
-      value?.type?.displayName == 'onResumeHandler' ||
-      value?.type?.displayName == 'onCancelHandler';
+      value?.type?.displayName == 'OnListenHandler' ||
+      value?.type?.displayName == 'OnPauseHandler' ||
+      value?.type?.displayName == 'OnResumeHandler' ||
+      value?.type?.displayName == 'OnCancelHandler';
 
   String _getGenericType(FieldElement e) {
     final typeArguments = (e.type as InterfaceType).typeArguments;
