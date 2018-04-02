@@ -3,12 +3,13 @@
 The `built_viewmodel.dart` package provides a way to create `ViewModel` classes. 
 It is a little bit inspired by the [Android ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel.html) but just a little bit ;-)
 
-Usually, you call `setState()` whenever the state of the Widget should change. 
+Usually, you call [`setState()`](https://docs.flutter.io/flutter/widgets/State/setState.html) whenever the state of the Widget should change. 
 But in my opinion, it is not a good idea to call `setState()` when just a small part of the whole state has changed
 (read more: [How fast is Flutter? I built a stopwatch app to find out.](https://medium.freecodecamp.org/how-fast-is-flutter-i-built-a-stopwatch-app-to-find-out),
 [Avoiding Empty State Callbacks](https://medium.com/@mehmetf_71205/setting-the-state)).
 
-This package creates lots of streams (as much as you need) to feed StreamBuilders.
+This package creates lots of [Stream](https://docs.flutter.io/flutter/dart-async/Stream-class.html)s 
+(as much as you need) to feed [StreamBuilder](https://docs.flutter.io/flutter/widgets/StreamBuilder-class.html)s.
 
 
 ## Let's start
@@ -153,5 +154,33 @@ void dispose() {
   super.dispose();
 }
 ```
+
+### Advanced feature
+
+Sometimes you need to know the state of the stream, for example, to start a download.
+
+You can create methods and annotate them with one of this annotations: `@OnListenHandler`, `@OnPauseHandler`, `@OnResumeHandler`, `@OnCancelHandler`.
+These annotations have a name parameter which must match with the name of the stream.
+
+For example, if you have a counter stream `Stream<int> get counter`, 
+and you want to know when something is listening for it the annotation should look like this: `@OnListenHandler('counter')`.
+
+```dart
+abstract class MyHomePageViewModel implements ViewModel<MyHomePageViewModelController> {
+  Stream<int> get counter;
+
+  @OnListenHandler('counter')                           // new
+  onListen() => print('start listening for updates');   // new
+
+  void setCounter(int value) => controller.counter.add(value);
+
+  factory MyHomePageViewModel() = _$MyHomePageViewModel;
+
+  MyHomePageViewModel._();
+}
+```
+
+
+
 
 You can find the [full example here](https://github.com/the4thfloor/built_viewmodel.dart/blob/master/example/lib/main.dart).
