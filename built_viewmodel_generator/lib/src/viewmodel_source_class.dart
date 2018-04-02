@@ -42,59 +42,54 @@ class ViewModelSourceClass {
   }
 
   String _generateImpl() {
-    final impl = new Class(
-      (b) => b
+    final impl = new Class((b) {
+      b
         ..name = _implName
         ..extend = refer(_name)
-        ..fields.add(
-          new Field((b) => b
-            ..name = '_controller'
-            ..type = refer('${_name}Controller')),
-        )
-        ..fields.addAll(
-          element.fields.where((FieldElement field) => _isSupportedType(field.type)).map(
-                (FieldElement field) => new Field((b) => b
-                  ..name = '_${field.name}'
-                  ..type = refer('Stream<${_getGenericType(field)}>')),
-              ),
-        )
-        ..methods.addAll(
-          element.fields.where((FieldElement field) => _isSupportedType(field.type)).map(
-                (FieldElement field) => new Method((b) => b
-                  ..name = '${field.name}'
-                  ..type = MethodType.getter
-                  ..lambda = true
-                  ..annotations.add(new CodeExpression(new Code('override')))
-                  ..returns = refer(field.type.toString())
-                  ..body = new Code('_${field.name} ??= controller.${field.name}.stream.asBroadcastStream()')),
-              ),
-        )
-        ..methods.add(
-          new Method(
-            (b) => b
-              ..name = 'controller'
-              ..type = MethodType.getter
-              ..lambda = true
-              ..returns = refer('${_name}Controller')
-              ..body = new Code('_controller ??= new _\$${_name}Controller()${_handlerRefs
-                  .map((_HandlerRef ref) => '.._${_lowerCamelCase([ref.stream, ref.handler])} = ${ref.method}')
-                  .join()}'),
-          ),
-        )
-        ..methods.add(
-          new Method.returnsVoid((b) => b
-            ..name = 'dispose'
-            ..annotations.add(new CodeExpression(new Code('override')))
-            ..body = new Code('controller.dispose();')),
-        )
         ..constructors.add(new Constructor((b) => b
           ..factory = true
           ..lambda = true
           ..body = new Code('new $_implName._()')))
         ..constructors.add(new Constructor((b) => b
           ..name = '_'
-          ..initializers.add(new Code('super._()')))),
-    );
+          ..initializers.add(new Code('super._()'))));
+
+      element.fields.where((FieldElement field) => _isSupportedType(field.type)).forEach((FieldElement field) {
+        final Field newField = new Field((b) => b
+          ..name = '_${field.name}'
+          ..type = refer('Stream<${_getGenericType(field)}>'));
+        final Method newMethod = new Method((b) => b
+          ..name = '${field.name}'
+          ..type = MethodType.getter
+          ..lambda = true
+          ..annotations.add(new CodeExpression(new Code('override')))
+          ..returns = refer(field.type.toString())
+          ..body = new Code('_${field.name} ??= controller.${field.name}.stream.asBroadcastStream()'));
+
+        b..fields.add(newField)..methods.add(newMethod);
+      });
+
+      final newControllerField = new Field((b) => b
+        ..name = '_controller'
+        ..type = refer('${_name}Controller'));
+      final newGetControllerMethod = new Method((b) => b
+        ..name = 'controller'
+        ..type = MethodType.getter
+        ..lambda = true
+        ..returns = newControllerField.type
+        ..body = new Code('${newControllerField.name} ??= new _\$${_name}Controller()${_handlerRefs
+            .map((_HandlerRef ref) => '.._${_lowerCamelCase([ref.stream, ref.handler])} = ${ref.method}')
+            .join()}'));
+      b..fields.add(newControllerField)..methods.add(newGetControllerMethod);
+
+      b
+        ..methods.add(new Method.returnsVoid((b) => b
+          ..name = 'dispose'
+          ..annotations.add(new CodeExpression(new Code('override')))
+          ..body = new Code('controller.dispose();')));
+
+      return b;
+    });
     return new DartFormatter().format('${impl.accept(new DartEmitter())}');
   }
 
@@ -115,41 +110,42 @@ class ViewModelSourceClass {
   }
 
   String _generateControllerImpl() {
-    final controller = new Class((b) => b
-      ..name = '_\$${_name}Controller'
-      ..extend = refer('${_name}Controller')
-      ..fields.addAll(_handlerRefs.map((_HandlerRef ref) => new Field((b) => b
-        ..name = '_${_lowerCamelCase([ref.stream, ref.handler])}'
-        ..type = refer('Function '))))
-      ..fields.addAll(
-        element.fields.where((FieldElement field) => _isSupportedType(field.type)).map(
-              (FieldElement field) => new Field((b) => b
-                ..name = '_${field.name}'
-                ..type = refer('StreamController<${_getGenericType(field)}>')),
-            ),
-      )
-      ..methods.addAll(
-        element.fields.where((FieldElement field) => _isSupportedType(field.type)).map(
-              (FieldElement field) => new Method((b) => b
-                ..name = '${field.name}'
-                ..type = MethodType.getter
-                ..lambda = true
-                ..returns = refer('StreamController<${_getGenericType(field)}>')
-                ..body = new Code('_${field.name} ??= new StreamController<${_getGenericType(field)}>(${ _handlerRefs
-                .where((_HandlerRef ref) => ref.stream == field.name)
-                .map((_HandlerRef ref) => '${ref.handler}: _${_lowerCamelCase([ref.stream, ref.handler])}')
-                .join(', ')})')),
-            ),
-      )
-      ..methods.add(
-        new Method.returnsVoid((b) => b
+    final controller = new Class((b) {
+      b
+        ..name = '_\$${_name}Controller'
+        ..extend = refer('${_name}Controller')
+        ..fields.addAll(_handlerRefs.map((_HandlerRef ref) => new Field((b) => b
+          ..name = '_${_lowerCamelCase([ref.stream, ref.handler])}'
+          ..type = refer('Function '))));
+
+      element.fields.where((FieldElement field) => _isSupportedType(field.type)).forEach((FieldElement field) {
+        final Field newField = new Field((b) => b
+          ..name = '_${field.name}'
+          ..type = refer('StreamController<${_getGenericType(field)}>'));
+        final Method newMethod = new Method((b) => b
+          ..name = '${field.name}'
+          ..type = MethodType.getter
+          ..lambda = true
+          ..returns = newField.type
+          ..body = new Code('${newField.name} ??= new StreamController<${_getGenericType(field)}>(${ _handlerRefs
+              .where((_HandlerRef ref) => ref.stream == field.name)
+              .map((_HandlerRef ref) => '${ref.handler}: _${_lowerCamelCase([ref.stream, ref.handler])}')
+              .join(', ')})'));
+
+        b..fields.add(newField)..methods.add(newMethod);
+      });
+
+      b
+        ..methods.add(new Method.returnsVoid((b) => b
           ..name = 'dispose'
           ..annotations.add(new CodeExpression(new Code('override')))
           ..body = new Code(element.fields
               .where((field) => _isSupportedType(field.type))
               .map((field) => '_${field.name}.close();')
-              .join())),
-      ));
+              .join())));
+
+      return b;
+    });
     return new DartFormatter().format('${controller.accept(new DartEmitter())}');
   }
 

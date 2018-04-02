@@ -11,9 +11,9 @@ class _$MyHomePageViewModel extends MyHomePageViewModel {
 
   _$MyHomePageViewModel._() : super._();
 
-  MyHomePageViewModelController _controller;
-
   Stream<int> _counter;
+
+  MyHomePageViewModelController _controller;
 
   @override
   Stream<int> get counter =>
