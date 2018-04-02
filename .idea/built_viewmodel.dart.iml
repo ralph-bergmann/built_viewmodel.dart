@@ -20,6 +20,9 @@
       <excludeFolder url="file://$MODULE_DIR$/built_viewmodel/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/built_viewmodel/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/built_viewmodel/build" />
+      <excludeFolder url="file://$MODULE_DIR$/built_viewmodel/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/built_viewmodel/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/built_viewmodel/example/build" />
       <excludeFolder url="file://$MODULE_DIR$/built_viewmodel_generator/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/built_viewmodel_generator/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/built_viewmodel_generator/build" />

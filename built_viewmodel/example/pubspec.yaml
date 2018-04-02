@@ -1,0 +1,15 @@
+name: example
+description: A sample command-line application.
+version: 0.0.1
+#homepage: https://www.example.com
+#author: dasralph <email@example.com>
+
+environment:
+  sdk: '>=1.20.1 <2.0.0'
+
+dependencies:
+  build_runner: ^0.7.5
+  built_viewmodel: ^1.1.0
+
+dev_dependencies:
+  built_viewmodel_generator: ^1.1.0
