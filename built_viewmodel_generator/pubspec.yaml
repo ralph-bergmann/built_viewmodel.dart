@@ -15,7 +15,6 @@ dependencies:
   build_config: ^0.2.5
   code_builder: ^3.0.3
   dart_style: ^1.0.9
-  quiver: '>=0.21.0 <0.29.0'
   source_gen: ^0.7.5
 
 dev_dependencies:
