@@ -10,7 +10,7 @@ import 'package:built_viewmodel/built_viewmodel.dart';
 
 part 'main.g.dart';
 
-main(List<String> arguments) {
+void main(List<String> arguments) {
   final model = new MyHomePageViewModel();
   model.counter.listen((int value) => print('got $value'));
 
@@ -24,7 +24,7 @@ abstract class MyHomePageViewModel implements ViewModel<MyHomePageViewModelContr
   Stream<int> get counter;
 
   @OnListenHandler('counter')
-  onListen() => print('someone is listening');
+  void onListen() => print('someone is listening');
 
   void setCounter(int value) => controller.counter.add(value);
 

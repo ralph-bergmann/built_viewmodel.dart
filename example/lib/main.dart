@@ -41,7 +41,16 @@ abstract class MyHomePageViewModel implements ViewModel<MyHomePageViewModelContr
   Stream<int> get counter;
 
   @OnListenHandler('counter')
-  onListen() => print('start listening for updates');
+  void onListen() => print('start listening');
+
+  @OnPauseHandler('counter')
+  void onPause() => print('pause listening');
+
+  @OnResumeHandler('counter')
+  void onResume() => print('resume listening');
+
+  @OnCancelHandler('counter')
+  void onCancel() => print('cancel listening');
 
   void setCounter(int value) => controller.counter.add(value);
 
