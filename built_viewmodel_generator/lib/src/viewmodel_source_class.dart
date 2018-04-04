@@ -2,6 +2,7 @@
 // All rights reserved. Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+import 'package:analyzer/analyzer.dart';
 import 'package:analyzer/dart/constant/value.dart';
 import 'package:analyzer/dart/element/element.dart';
 import 'package:analyzer/dart/element/type.dart';
@@ -59,13 +60,13 @@ class ViewModelSourceClass {
       element.fields.where((FieldElement field) => _isSupportedType(field.type)).forEach((FieldElement field) {
         final Field newField = new Field((b) => b
           ..name = '_${field.name}'
-          ..type = refer('Stream<${_getGenericType(field)}>'));
+          ..type = refer('Stream${_getGenericType(field)}'));
         final Method newMethod = new Method((b) => b
           ..name = '${field.name}'
           ..type = MethodType.getter
           ..lambda = true
           ..annotations.add(new CodeExpression(new Code('override')))
-          ..returns = refer(field.type.toString())
+          ..returns = newField.type
           ..body = new Code('_${field.name} ??= controller.${field.name}.stream.asBroadcastStream()'));
 
         b..fields.add(newField)..methods.add(newMethod);
@@ -105,7 +106,7 @@ class ViewModelSourceClass {
               (FieldElement field) => new Method((b) => b
                 ..name = field.name
                 ..type = MethodType.getter
-                ..returns = refer('StreamController<${_getGenericType(field)}>')),
+                ..returns = refer('StreamController${_getGenericType(field)}')),
             ),
       ));
     return new DartFormatter().format('${controller.accept(new DartEmitter())}');
@@ -123,13 +124,13 @@ class ViewModelSourceClass {
       element.fields.where((FieldElement field) => _isSupportedType(field.type)).forEach((FieldElement field) {
         final Field newField = new Field((b) => b
           ..name = '_${field.name}'
-          ..type = refer('StreamController<${_getGenericType(field)}>'));
+          ..type = refer('StreamController${_getGenericType(field)}'));
         final Method newMethod = new Method((b) => b
           ..name = '${field.name}'
           ..type = MethodType.getter
           ..lambda = true
           ..returns = newField.type
-          ..body = new Code('${newField.name} ??= new StreamController<${_getGenericType(field)}>(${ _handlerRefs
+          ..body = new Code('${newField.name} ??= new ${newField.type.symbol}(${ _handlerRefs
               .where((_HandlerRef ref) => ref.stream == field.name)
               .map((_HandlerRef ref) => '${ref.callback}: _${_lowerCamelCase([ref.stream, ref.callback])}')
               .join(', ')})'));
@@ -190,8 +191,8 @@ class ViewModelSourceClass {
   }
 
   String _getGenericType(FieldElement e) {
-    final typeArguments = (e.type as InterfaceType).typeArguments;
-    return typeArguments.map((DartType type) => type.name).join(', ');
+    final node = (e.getter.computeNode() as MethodDeclaration);
+    return (node.childEntities.first as TypeName).typeArguments.toString();
   }
 
   String _lowerCamelCase(List<String> parts) {
