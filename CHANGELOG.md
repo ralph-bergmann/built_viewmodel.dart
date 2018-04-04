@@ -1,3 +1,9 @@
+## [1.1.1] - 2018/04/04
+
+* handle import prefixes
+* optimise code generator to pass static analysis check
+
+
 ## [1.1.0] - 2018/04/03
 
 * **API breaking change:** rename listener classes to match Dart naming guide
