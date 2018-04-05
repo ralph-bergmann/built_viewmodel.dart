@@ -23,12 +23,36 @@
       <excludeFolder url="file://$MODULE_DIR$/built_viewmodel/example/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/built_viewmodel/example/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/built_viewmodel/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/built_viewmodel_flutter_built_redux/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/built_viewmodel_flutter_built_redux/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/built_viewmodel_flutter_built_redux/build" />
+      <excludeFolder url="file://$MODULE_DIR$/built_viewmodel_flutter_built_redux/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/built_viewmodel_flutter_built_redux/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/built_viewmodel_flutter_built_redux/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/built_viewmodel_flutter_redux/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/built_viewmodel_flutter_redux/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/built_viewmodel_flutter_redux/build" />
+      <excludeFolder url="file://$MODULE_DIR$/built_viewmodel_flutter_redux/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/built_viewmodel_flutter_redux/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/built_viewmodel_flutter_redux/example/build" />
       <excludeFolder url="file://$MODULE_DIR$/built_viewmodel_generator/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/built_viewmodel_generator/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/built_viewmodel_generator/build" />
+      <excludeFolder url="file://$MODULE_DIR$/built_viewmodel_generator/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/built_viewmodel_generator/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/built_viewmodel_generator/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/built_viewmodel_old/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/built_viewmodel_old/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/built_viewmodel_old/build" />
       <excludeFolder url="file://$MODULE_DIR$/example/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/example/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/example_flutter_built_redux/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/example_flutter_built_redux/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/example_flutter_built_redux/build" />
+      <excludeFolder url="file://$MODULE_DIR$/example_flutter_redux/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/example_flutter_redux/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/example_flutter_redux/build" />
     </content>
     <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />

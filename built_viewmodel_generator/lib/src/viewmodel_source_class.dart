@@ -17,7 +17,7 @@ class ViewModelSourceClass {
 
   static bool isSourceFile(ClassElement classElement) {
     return !classElement.displayName.startsWith('_\$') &&
-        (classElement.allSupertypes.any((InterfaceType interfaceType) => interfaceType.displayName == 'ViewModel'));
+        (classElement.allSupertypes.any((InterfaceType interfaceType) => interfaceType.name == 'ViewModel'));
   }
 
   String get _name => element.displayName;
@@ -37,9 +37,9 @@ class ViewModelSourceClass {
     }
 
     final result = new StringBuffer();
-    result.write(_generateImpl());
-    result.write(_generateController());
-    result.write(_generateControllerImpl());
+    result.writeln(_generateImpl());
+    result.writeln(_generateController());
+    result.writeln(_generateControllerImpl());
 
     return result.toString();
   }

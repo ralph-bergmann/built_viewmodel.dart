@@ -11,3 +11,5 @@ environment:
 
 dependencies:
   build_config: ^0.2.5
+  flutter:
+    sdk: flutter
