@@ -144,7 +144,7 @@ class ViewModelSourceClass {
           ..annotations.add(new CodeExpression(new Code('override')))
           ..body = new Code(element.fields
               .where((field) => _isSupportedType(field.type))
-              .map((field) => '_${field.name}.close();')
+              .map((field) => '_${field.name}?.close();')
               .join())));
 
       return b;
