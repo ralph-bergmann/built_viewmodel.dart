@@ -52,6 +52,6 @@ class _$MyHomePageViewModelController extends MyHomePageViewModelController {
       onCancel: _counterOnCancel);
   @override
   void dispose() {
-    _counter.close();
+    _counter?.close();
   }
 }
