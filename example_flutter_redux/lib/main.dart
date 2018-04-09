@@ -7,7 +7,7 @@ library main;
 import 'dart:async';
 
 import 'package:built_viewmodel/built_viewmodel.dart';
-import 'package:built_viewmodel_flutter_redux/built_viewmodel.dart';
+import 'package:built_viewmodel_flutter_redux/built_viewmodel_flutter_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';

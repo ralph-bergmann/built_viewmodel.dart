@@ -9,7 +9,7 @@ import 'dart:async';
 import 'package:built_redux/built_redux.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_viewmodel/built_viewmodel.dart';
-import 'package:built_viewmodel_flutter_built_redux/built_viewmodel.dart';
+import 'package:built_viewmodel_flutter_built_redux/built_viewmodel_flutter_built_redux.dart';
 import 'package:flutter/material.dart' hide Builder;
 import 'package:flutter_built_redux/flutter_built_redux.dart';
 
