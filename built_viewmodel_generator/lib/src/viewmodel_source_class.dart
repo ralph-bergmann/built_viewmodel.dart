@@ -67,7 +67,7 @@ class ViewModelSourceClass {
           ..lambda = true
           ..annotations.add(new CodeExpression(new Code('override')))
           ..returns = newField.type
-          ..body = new Code('_${field.name} ??= controller.${field.name}.stream.asBroadcastStream()'));
+          ..body = new Code('_${field.name} ??= controller.${field.name}.stream'));
 
         b..fields.add(newField)..methods.add(newMethod);
       });
@@ -130,7 +130,7 @@ class ViewModelSourceClass {
           ..type = MethodType.getter
           ..lambda = true
           ..returns = newField.type
-          ..body = new Code('${newField.name} ??= new ${newField.type.symbol}(${ _handlerRefs
+          ..body = new Code('${newField.name} ??= new ${newField.type.symbol}.broadcast(${ _handlerRefs
               .where((_HandlerRef ref) => ref.stream == field.name)
               .map((_HandlerRef ref) => '${ref.callback}: _${_lowerCamelCase([ref.stream, ref.callback])}')
               .join(', ')})'));
@@ -156,18 +156,12 @@ class ViewModelSourceClass {
 
   bool _isSupportedAnnotation(DartObject value) =>
       value?.type?.displayName == 'OnListenHandler' ||
-      value?.type?.displayName == 'OnPauseHandler' ||
-      value?.type?.displayName == 'OnResumeHandler' ||
       value?.type?.displayName == 'OnCancelHandler';
 
   String _callBackForAnnotation(DartObject value) {
     switch (value?.type?.displayName) {
       case 'OnListenHandler':
         return 'onListen';
-      case 'OnPauseHandler':
-        return 'onPause';
-      case 'OnResumeHandler':
-        return 'onResume';
       case 'OnCancelHandler':
         return 'onCancel';
       default:
@@ -178,10 +172,6 @@ class ViewModelSourceClass {
   String _callBackTypeForAnnotation(DartObject value) {
     switch (value?.type?.displayName) {
       case 'OnListenHandler':
-        return 'ControllerCallback';
-      case 'OnPauseHandler':
-        return 'ControllerCallback';
-      case 'OnResumeHandler':
         return 'ControllerCallback';
       case 'OnCancelHandler':
         return 'ControllerCancelCallback';

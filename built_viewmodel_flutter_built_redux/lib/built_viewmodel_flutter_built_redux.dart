@@ -10,13 +10,11 @@ import 'package:flutter_built_redux/flutter_built_redux.dart';
 import 'package:meta/meta.dart';
 
 abstract class ViewModelFlutterBuiltReduxMixin<State extends Built<State, StateBuilder>,
-    StateBuilder extends Builder<State, StateBuilder>, Actions extends ReduxActions, R> extends ViewModelBaseMixin {
+    StateBuilder extends Builder<State, StateBuilder>, Actions extends ReduxActions> extends ViewModelBaseMixin {
   Store<State, StateBuilder, Actions> store;
   Actions actions;
 
-  R convert(State state);
-
-  void onStateChanged(R state);
+  void onStateChanged(StoreChange<State, StateBuilder, dynamic> stateChange);
 
   @override
   @mustCallSuper
@@ -27,9 +25,7 @@ abstract class ViewModelFlutterBuiltReduxMixin<State extends Built<State, StateB
   void _listen(BuildContext context) {
     store = _store(context);
     actions = store?.actions;
-    store?.nextState?.listen((State state) {
-      _onStateChanged(state);
-    });
+    store?.stream?.listen((StoreChange<State, StateBuilder, dynamic> stateChange) => onStateChanged(stateChange));
   }
 
   Store<State, StateBuilder, Actions> _store(BuildContext context) {
@@ -37,6 +33,4 @@ abstract class ViewModelFlutterBuiltReduxMixin<State extends Built<State, StateB
     assert(reduxProvider != null, 'Store not found, did you forgot ReduxProvider?');
     return reduxProvider.store as Store<State, StateBuilder, Actions>;
   }
-
-  void _onStateChanged(State state) => onStateChanged(convert(state));
 }

@@ -107,17 +107,11 @@ class MyHomePage extends StatelessWidget {
 }
 
 abstract class MyHomePageViewModel extends ViewModel<MyHomePageViewModelController>
-    with ViewModelFlutterBuiltReduxMixin<AppState, AppStateBuilder, AppActions, int> {
+    with ViewModelFlutterBuiltReduxMixin<AppState, AppStateBuilder, AppActions> {
   Stream<int> get counter;
 
   @OnListenHandler('counter')
   void onListen() => print('start listening');
-
-  @OnPauseHandler('counter')
-  void onPause() => print('pause listening');
-
-  @OnResumeHandler('counter')
-  void onResume() => print('resume listening');
 
   @OnCancelHandler('counter')
   void onCancel() => print('cancel listening');
@@ -126,9 +120,10 @@ abstract class MyHomePageViewModel extends ViewModel<MyHomePageViewModelControll
 
   void increaseCounter() => actions?.increment();
 
-  int convert(AppState state) => state.count;
-
-  void onStateChanged(int state) => setCounter(state);
+  @override
+  void onStateChanged(StoreChange<AppState, AppStateBuilder, dynamic> stateChange) {
+    setCounter(stateChange.next.count);
+  }
 
   factory MyHomePageViewModel() = _$MyHomePageViewModel;
 
