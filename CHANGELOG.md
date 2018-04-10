@@ -1,3 +1,8 @@
+## 1.2.1 - 2018/04/10
+
+* small enhancements
+
+
 ## 1.2.0 - 2018/04/09
 
 * add experimental ViewModelConnector for plain, [Flutter Redux](https://pub.dartlang.org/packages/flutter_redux) 

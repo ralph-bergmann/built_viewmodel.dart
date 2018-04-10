@@ -23,11 +23,13 @@ class OnListenHandler {
   const OnListenHandler(this.name);
 }
 
+@deprecated
 class OnPauseHandler {
   final String name;
   const OnPauseHandler(this.name);
 }
 
+@deprecated
 class OnResumeHandler {
   final String name;
   const OnResumeHandler(this.name);
