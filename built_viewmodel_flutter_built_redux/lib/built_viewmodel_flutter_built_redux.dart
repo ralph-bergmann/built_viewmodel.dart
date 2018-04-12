@@ -19,12 +19,12 @@ abstract class ViewModelFlutterBuiltReduxMixin<State extends Built<State, StateB
   @override
   @mustCallSuper
   void build(BuildContext context) {
+    store = _store(context);
+    actions = store?.actions;
     _listen(context);
   }
 
   void _listen(BuildContext context) {
-    store = _store(context);
-    actions = store?.actions;
     store?.stream?.listen((StoreChange<State, StateBuilder, dynamic> stateChange) => onStateChanged(stateChange));
   }
 

@@ -40,7 +40,7 @@ class OnCancelHandler {
   const OnCancelHandler(this.name);
 }
 
-class ViewModelConnector<T extends ViewModel<Controller>> extends _ViewModelConnectorBase<T> {
+class ViewModelConnector<T extends ViewModel<Controller>> extends StatelessWidget {
   const ViewModelConnector({@required this.viewModel, this.onInit, this.onDispose, @required this.builder})
       : assert(viewModel != null),
         assert(builder != null);
@@ -50,48 +50,59 @@ class ViewModelConnector<T extends ViewModel<Controller>> extends _ViewModelConn
   final _OnDisposeCallback<T> onDispose;
   final _ViewModelBuilder<T> builder;
 
-  void init() {
+  Widget build(BuildContext context) {
+    viewModel.build(context);
+    return new _LifecycleListener(
+      viewModel: viewModel,
+      onInit: onInit,
+      onDispose: onDispose,
+      builder: builder,
+    );
+  }
+}
+
+class _LifecycleListener<T extends ViewModel<Controller>> extends StatefulWidget {
+  _LifecycleListener({@required this.viewModel, this.onInit, this.onDispose, @required this.builder})
+      : assert(viewModel != null),
+        assert(builder != null);
+
+  final T viewModel;
+  final _OnInitCallback<T> onInit;
+  final _OnDisposeCallback<T> onDispose;
+  final _ViewModelBuilder<T> builder;
+
+  @override
+  State<StatefulWidget> createState() {
+    return new _LifecycleListenerState<T>();
+  }
+
+  void _onInit() {
     if (onInit != null) onInit(viewModel);
   }
 
-  @override
-  Widget build(BuildContext context) {
-    viewModel.build(context);
+  Widget _onBuild(BuildContext context) {
     return builder(viewModel);
   }
 
-  void dispose() {
+  void _onDispose() {
     if (onDispose != null) onDispose(viewModel);
     viewModel.dispose();
   }
 }
 
-abstract class _ViewModelConnectorBase<T extends ViewModel<Controller>> extends StatefulWidget {
-  const _ViewModelConnectorBase({Key key}) : super(key: key);
-
-  @override
-  State<StatefulWidget> createState() => new _ViewModelConnectorBaseState<T>();
-
-  void init();
-
-  Widget build(BuildContext context);
-
-  void dispose();
-}
-
-class _ViewModelConnectorBaseState<T extends ViewModel<Controller>> extends State<_ViewModelConnectorBase<T>> {
+class _LifecycleListenerState<T extends ViewModel<Controller>> extends State<_LifecycleListener<T>> {
   @override
   void initState() {
     super.initState();
-    widget.init();
+    widget._onInit();
   }
 
   @override
-  Widget build(BuildContext context) => widget.build(context);
+  Widget build(BuildContext context) => widget._onBuild(context);
 
   @override
   void dispose() {
-    widget.dispose();
+    widget._onDispose();
     super.dispose();
   }
 }
