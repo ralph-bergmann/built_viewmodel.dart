@@ -1,5 +1,5 @@
 name: built_viewmodel_flutter_built_redux
-version: 1.2.1
+version: 1.2.2
 description: >
   built_viewmodel_flutter_built_redux to generate ViewModel(s).
   This library is the runtime dependency.
@@ -10,7 +10,7 @@ environment:
   sdk: '>=2-0-0-dev <2.0.0'
 
 dependencies:
-  built_viewmodel: ^1.2.1
+  built_viewmodel: ^1.2.2
   flutter:
     sdk: flutter
   flutter_built_redux: ^0.5.0
