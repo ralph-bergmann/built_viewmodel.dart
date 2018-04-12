@@ -18,11 +18,11 @@ abstract class ViewModelFlutterReduxMixin<S, R> extends ViewModelBaseMixin {
   @override
   @mustCallSuper
   void build(BuildContext context) {
+    store = _store(context);
     _listen(context);
   }
 
   void _listen(BuildContext context) {
-    store = _store(context);
     store?.onChange?.listen((S state) {
       _onStateChanged(state);
     });

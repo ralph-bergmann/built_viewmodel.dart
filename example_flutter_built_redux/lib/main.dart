@@ -45,11 +45,11 @@ class MyApp extends StatelessWidget {
     new AppActions(),
   );
 
-  Widget build(BuildContext context) => ReduxProvider(
+  Widget build(BuildContext context) => new ReduxProvider(
         store: store,
-        child: MaterialApp(
+        child: new MaterialApp(
           title: 'Flutter Demo',
-          theme: ThemeData(primarySwatch: Colors.blue),
+          theme: new ThemeData(primarySwatch: Colors.blue),
           home: new MyHomePage(title: 'Flutter Demo Home Page'),
         ),
       );
