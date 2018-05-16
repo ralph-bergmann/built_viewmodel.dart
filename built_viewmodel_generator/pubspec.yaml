@@ -1,5 +1,5 @@
 name: built_viewmodel_generator
-version: 1.2.3
+version: 1.2.4
 description: >
   built_viewmodel_generator to generate ViewModel(s).
   This library is the dev dependency.
