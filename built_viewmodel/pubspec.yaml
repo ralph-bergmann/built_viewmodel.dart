@@ -1,5 +1,5 @@
 name: built_viewmodel
-version: 1.2.2
+version: 1.2.3
 description: >
   built_viewmodel to generate ViewModel(s).
   This library is the runtime dependency.
@@ -13,3 +13,7 @@ dependencies:
   build_config: ^0.2.5
   flutter:
     sdk: flutter
+  quiver: '>=0.21.0 <0.30.0'
+
+dev_dependencies:
+  test: any
