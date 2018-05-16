@@ -13,3 +13,7 @@ dependencies:
   build_config: ^0.2.5
   flutter:
     sdk: flutter
+  quiver: '>=0.21.0 <0.30.0'
+
+dev_dependencies:
+  test: any
