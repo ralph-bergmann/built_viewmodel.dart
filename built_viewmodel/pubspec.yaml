@@ -1,5 +1,5 @@
 name: built_viewmodel
-version: 1.2.3
+version: 1.2.5
 description: >
   built_viewmodel to generate ViewModel(s).
   This library is the runtime dependency.
@@ -7,7 +7,7 @@ author: Ralph Bergmann <ralph@the4thfloor.eu>
 homepage: https://github.com/the4thfloor/built_viewmodel.dart
 
 environment:
-  sdk: '>=2-0-0-dev <2.0.0'
+  sdk: '>=2-0-0-dev <3.0.0'
 
 dependencies:
   build_config: ^0.2.5
