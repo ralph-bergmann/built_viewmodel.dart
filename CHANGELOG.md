@@ -1,3 +1,8 @@
+## 1.2.5 - 2018/09/13
+
+* this library is deprecated from now and will not be supported anymore
+
+
 ## 1.2.1 - 2018/04/10
 
 * small enhancements
