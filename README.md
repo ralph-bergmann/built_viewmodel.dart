@@ -1,7 +1,7 @@
 # Deprecated
 
 This library is deprecated from now and will not be supported anymore.
-Please use the [BLoC pattern @ Build reactive mobile apps with Flutter (Google I/O '18)](https://youtu.be/RS36gBEp8OI?t=23m7s) instead, which do (more or less) the same but (for now) without code generation :-(
+Please use the [BLoC pattern (Build reactive mobile apps with Flutter (Google I/O '18))](https://youtu.be/RS36gBEp8OI?t=23m7s) instead, which do (more or less) the same but (for now) without code generation.
 
 
 # built_viewmodel.dart
